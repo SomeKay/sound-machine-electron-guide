@@ -5,6 +5,8 @@ var BrowserWindow = require('browser-window');
 
 var mainWindow = null;
 
+var globalShortcut = require('global-shortcut');
+
 app.on('ready', function() {
     mainWindow = new BrowserWindow({
         frame: false,
@@ -14,6 +16,13 @@ app.on('ready', function() {
     });
 
     mainWindow.loadUrl('file://' + __dirname + '/app/index.html');
+
+    globalShortcut.register('ctrl+shift+1', function () {
+        mainWindow.webContents.send('global-shortcut', 0);
+    });
+    globalShortcut.register('ctrl+shift+2', function () {
+        mainWindow.webContents.send('global-shortcut', 1);
+    });
 });
 
 var ipc = require('ipc');
