@@ -1,0 +1,40 @@
+html,
+body {
+    background: #044D7F;
+    overflow: hidden;
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+}
+
+#settings-screen {
+    color: #fff;
+}
+
+h2 {
+    margin-top: 8px;
+}
+
+input,
+label {
+    -webkit-app-region: no-drag;
+}
+
+input {
+    padding: 10px;
+}
+
+.close {
+    background: transparent url('../img/close.png') no-repeat 4px 4px;
+    background-size: 24px 24px;
+    cursor: pointer;
+    display: inline-block;
+    height: 32px;
+    position: absolute;
+    right: 6px;
+    text-indent: -10000px;
+    top: 6px;
+    width: 32px;
+    z-index: 1;
+
+    -webkit-app-region: no-drag;
+}

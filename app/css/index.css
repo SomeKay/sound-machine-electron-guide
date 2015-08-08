@@ -1,0 +1,116 @@
+html,
+body {
+    background: #0C7CA2;
+    height: 725px;
+    overflow: hidden;
+    width: 368px;
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+}
+
+#main {
+    background: #1DCCEB;
+    border-bottom: 1px solid #73E2F7;
+    height: 700px;
+}
+
+.speaker {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.speaker img {
+    height: 194px;
+    width: 274px;
+}
+
+#main h1 {
+    color: #fff;
+    padding-right: 6px;
+    padding-top: 5px;
+    text-align: right;
+    text-indent: -10000px;
+}
+
+#main h1 img {
+    height: 31px;
+    width: 195px;
+}
+
+.buttons {
+    padding: 0 20px;
+}
+
+.buttons > div {
+    text-align: center;
+}
+
+.button-sound {
+    background-color: #0C7CA2;
+    border-radius: 100%;
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+    margin-top: 57px;
+    position: relative;
+    width: 24px;
+    box-shadow: 0 4px 0 #044D7F;
+    -webkit-app-region: no-drag;
+}
+
+.button-sound:hover {
+    box-shadow: 0 2px 0 #044D7F;
+    top: 2px;
+}
+
+.button-sound:hover > span {
+    top: -42px;
+}
+
+.button-sound:active {
+    box-shadow: 0 0 0 #044D7F;
+    top: 5px;
+}
+
+.button-sound:active > span {
+    top: -45px;
+}
+
+.button-icon {
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 50px;
+    left: -2px;
+    position: absolute;
+    top: -40px;
+    width: 30px;
+    -webkit-app-region: no-drag;
+}
+
+.settings,
+.close {
+    cursor: pointer;
+    display: inline-block;
+    height: 32px;
+    position: absolute;
+    text-indent: -10000px;
+    top: 6px;
+    width: 32px;
+    z-index: 1;
+
+    -webkit-app-region: no-drag;
+}
+
+.settings {
+    background: transparent url('../img/settings.png') no-repeat 4px 4px;
+    background-size: 24px 24px;
+    right: 38px;
+}
+
+.close {
+    background: transparent url('../img/close.png') no-repeat 4px 4px;
+    background-size: 24px 24px;
+    right: 6px;
+}
+
