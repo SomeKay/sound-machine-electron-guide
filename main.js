@@ -1,9 +1,9 @@
 'use strict';
 
-var app = require('app');
-var BrowserWindow = require('browser-window');
+const {app, BrowserWindow} = require('electron');
+const {ipcMain} = require('electron');
 
-var mainWindow = null;
+let mainWindow;
 
 app.on('ready', function() {
     mainWindow = new BrowserWindow({
@@ -13,5 +13,15 @@ app.on('ready', function() {
         width: 368
     });
 
-    mainWindow.loadUrl('file://' + __dirname + '/app/index.html');
+    mainWindow.loadURL('file://' + __dirname + '/app/index.html');
+});
+
+ipcMain.on('window-close', (event, arg) => {
+  console.log(arg);
+  app.quit();
+});
+
+ipcMain.on('async-msg', (event, arg) => {
+  console.log(arg);
+  //app.quit();
 });
