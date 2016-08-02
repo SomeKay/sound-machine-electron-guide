@@ -1,10 +1,8 @@
 'use strict';
 
-var ipc = require('ipc');
-var remote = require('remote');
-var Tray = remote.require('tray');
-var Menu = remote.require('menu');
-var path = require('path');
+const {Tray, Menu} = require('electron').remote;
+
+const {ipcRenderer} = require('electron');
 
 var soundButtons = document.querySelectorAll('.button-sound');
 var closeEl = document.querySelector('.close');
