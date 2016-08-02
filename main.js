@@ -18,7 +18,7 @@ app.on('ready', function() {
         width: 368
     });
 
-    mainWindow.loadUrl('file://' + __dirname + '/app/index.html');
+    mainWindow.loadURL('file://' + __dirname + '/app/index.html');
 
     setGlobalShortcuts();
 });
@@ -53,7 +53,7 @@ ipc.on('open-settings-window', function () {
         width: 200
     });
 
-    settingsWindow.loadUrl('file://' + __dirname + '/app/settings.html');
+    settingsWindow.loadURL('file://' + __dirname + '/app/settings.html');
 
     settingsWindow.on('closed', function () {
         settingsWindow = null;
