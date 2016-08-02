@@ -30,14 +30,14 @@ function prepareButton(buttonEl, soundName) {
 }
 
 closeEl.addEventListener('click', function () {
-    ipc.send('close-main-window');
+    ipcRenderer.send('close-main-window');
 });
 
 settingsEl.addEventListener('click', function () {
-    ipc.send('open-settings-window');
+    ipcRenderer.send('open-settings-window');
 });
 
-ipc.on('global-shortcut', function (arg) {
+ipcRenderer.on('global-shortcut', (arg) => {
     var event = new MouseEvent('click');
     soundButtons[arg].dispatchEvent(event);
 });
@@ -57,13 +57,13 @@ var trayMenuTemplate = [
     {
         label: 'Settings',
         click: function () {
-            ipc.send('open-settings-window');
+            ipcRenderer.send('open-settings-window');
         }
     },
     {
         label: 'Quit',
         click: function () {
-            ipc.send('close-main-window');
+            ipcRenderer.send('close-main-window');
         }
     }
 ];
