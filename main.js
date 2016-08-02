@@ -1,10 +1,7 @@
 'use strict';
 
-var app = require('app');
-var BrowserWindow = require('browser-window');
-var globalShortcut = require('global-shortcut');
+const {app, BrowserWindow, globalShortcut, ipcMain} = require('electron');
 var configuration = require('./configuration');
-var ipc = require('ipc');
 
 var mainWindow = null;
 var settingsWindow = null;
