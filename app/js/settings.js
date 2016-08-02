@@ -7,7 +7,7 @@ var modifierCheckboxes = document.querySelectorAll('.global-shortcut');
 var closeEl = document.querySelector('.close');
 
 closeEl.addEventListener('click', function (e) {
-    ipc.send('close-settings-window');
+    ipcRenderer.send('close-settings-window');
 });
 
 for (var i = 0; i < modifierCheckboxes.length; i++) {
@@ -33,5 +33,5 @@ function bindModifierCheckboxes(e) {
     }
 
     configuration.saveSettings('shortcutKeys', shortcutKeys);
-    ipc.send('set-global-shortcuts');
+    ipcRenderer.send('set-global-shortcuts');
 }
