@@ -37,11 +37,11 @@ function setGlobalShortcuts() {
     });
 }
 
-ipc.on('close-main-window', function () {
+ipcMain.on('close-main-window', () => {
     app.quit();
 });
 
-ipc.on('open-settings-window', function () {
+ipcMain.on('open-settings-window', () => {
     if (settingsWindow) {
         return;
     }
@@ -60,12 +60,12 @@ ipc.on('open-settings-window', function () {
     });
 });
 
-ipc.on('close-settings-window', function () {
+ipcMain.on('close-settings-window', function () {
     if (settingsWindow) {
         settingsWindow.close();
     }
 });
 
-ipc.on('set-global-shortcuts', function () {
+ipcMain.on('set-global-shortcuts', function () {
     setGlobalShortcuts();
 });
