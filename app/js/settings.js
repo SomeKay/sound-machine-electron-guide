@@ -1,6 +1,6 @@
 'use strict';
 
-var ipc = require('ipc');
+const {ipcRenderer} = require('electron');
 var configuration = require('../configuration');
 
 var modifierCheckboxes = document.querySelectorAll('.global-shortcut');
