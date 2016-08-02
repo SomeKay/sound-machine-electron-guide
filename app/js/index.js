@@ -3,6 +3,7 @@
 const {Tray, Menu} = require('electron').remote;
 
 const {ipcRenderer} = require('electron');
+var path = require('path');
 
 var soundButtons = document.querySelectorAll('.button-sound');
 var closeEl = document.querySelector('.close');
