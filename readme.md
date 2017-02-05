@@ -1,1 +1,1 @@
-Sound Machine pet project (using electron)
+Sound Machine pet project (using electron).
