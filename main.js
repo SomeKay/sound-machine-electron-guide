@@ -20,7 +20,7 @@ app.on('ready', function() {
 
     mainWindow = new electron.BrowserWindow({
         frame: false,
-        height: 520,
+        height: 540,
         resizable: false,
         width: 368
     });
