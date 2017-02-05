@@ -37,6 +37,10 @@ body {
     width: 195px;
 }
 
+.separator {
+    border-bottom: 0px solid white;
+}
+
 .buttons {
     padding: 0 20px;
 }
