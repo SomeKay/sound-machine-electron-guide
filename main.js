@@ -1,16 +1,12 @@
 'use strict';
 
 var electron = require('electron');
-
-var {app, BrowserWindow, globalShortcut} = electron;
-
+var {app, BrowserWindow, globalShortcut, Menu, Tray} = electron;
 var ipc = require('electron').ipcMain;
-
 var configuration = require('./configuration');
-
-//var globalShortcut = require('electron').globalShortcut;
-
 var mainWindow = null;
+let tray = null;
+var path = require('path');
 
 app.on('ready', function() {
 
@@ -28,6 +24,41 @@ app.on('ready', function() {
     mainWindow.loadURL('file://' + __dirname + '/app/index.html');
 
     setGlobalShortcuts();
+
+    if (process.platform === 'darwin') {
+        tray = new Tray(path.join(__dirname, 'app/img/tray-iconTemplate.png'));
+    }
+    else {
+        tray = new Tray(path.join(__dirname, 'app/img/tray-icon-alt.png'));
+    }
+
+    const contextMenu = Menu.buildFromTemplate([
+      {label: 'SoundMachine', enabled: false},
+      {label: 'Settings',
+      click: function () {
+          if (settingsWindow) {
+              return;
+          }
+
+          settingsWindow = new BrowserWindow({
+              frame: false,
+              height: 200,
+              resizable: false,
+              width: 200
+          });
+
+          settingsWindow.loadURL('file://' + __dirname + '/app/settings.html');
+
+          settingsWindow.on('closed', function () {
+              settingsWindow = null;
+          });
+      }
+      }, //open settings on click
+      {label: 'About'},    //open about window
+      {label: 'Quit', click: app.quit }
+    ])
+    tray.setToolTip('This is my application.')
+    tray.setContextMenu(contextMenu)
 
 });
 
@@ -50,6 +81,33 @@ ipc.on('open-settings-window', function () {
     settingsWindow.on('closed', function () {
         settingsWindow = null;
     });
+});
+
+var aboutWindow = null;
+
+ipc.on('open-about-window', function () {
+    if (aboutWindow) {
+        return;
+    }
+
+    aboutWindow = new BrowserWindow({
+        frame: false,
+        height: 200,
+        resizable: false,
+        width: 200
+    });
+
+    aboutWindow.loadURL('file://' + __dirname + '/app/about.html');
+
+    aboutWindow.on('closed', function (){
+        aboutWindow = null;
+    });
+});
+
+ipc.on('close-about-window', function () {
+    if (aboutWindow) {
+        aboutWindow.close();
+    }
 });
 
 ipc.on('close-settings-window', function () {
