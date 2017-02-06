@@ -54,7 +54,26 @@ app.on('ready', function() {
           });
       }
       }, //open settings on click
-      {label: 'About'},    //open about window
+      {label: 'About',
+      click: function () {
+          if (aboutWindow) {
+              return;
+          }
+
+          aboutWindow = new BrowserWindow({
+              frame: false,
+              height: 200,
+              resizable: false,
+              width: 200
+          });
+
+          aboutWindow.loadURL('file://' + __dirname + '/app/about.html');
+
+          aboutWindow.on('closed', function (){
+              aboutWindow = null;
+          });
+      }
+      },    //open about window
       {label: 'Quit', click: app.quit }
     ])
     tray.setToolTip('This is my application.')
