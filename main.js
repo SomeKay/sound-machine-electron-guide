@@ -15,6 +15,8 @@ app.on('ready', function() {
     }
 
     mainWindow = new electron.BrowserWindow({
+        title: 'Sound Machine',
+        icon: (path.join(__dirname, 'app/img/app-icon.png')),
         frame: false,
         height: 540,
         resizable: false,
@@ -26,17 +28,19 @@ app.on('ready', function() {
     setGlobalShortcuts();
 
     if (process.platform === 'darwin') {
-        tray = new Tray(path.join(__dirname, 'app/img/tray-iconTemplate.png'));
+        tray = new Tray(path.join(__dirname, 'app/img/app-icon.png'));
     }
     else {
-        tray = new Tray(path.join(__dirname, 'app/img/tray-icon-alt.png'));
+        tray = new Tray(path.join(__dirname, 'app/img/app-icon.png'));
     }
 
     const contextMenu = Menu.buildFromTemplate([
-      {label: 'SoundMachine', enabled: false},
+      {label: 'Sound Machine', enabled: false},
+      {type: 'separator'},
       {label: 'Settings',
       click: function () {
           if (settingsWindow) {
+              settingsWindow.focus();
               return;
           }
 
@@ -57,12 +61,13 @@ app.on('ready', function() {
       {label: 'About',
       click: function () {
           if (aboutWindow) {
+              aboutWindow.focus();
               return;
           }
 
           aboutWindow = new BrowserWindow({
               frame: false,
-              height: 200,
+              height: 250,
               resizable: false,
               width: 200
           });
@@ -73,10 +78,11 @@ app.on('ready', function() {
               aboutWindow = null;
           });
       }
-      },    //open about window
+      },
+      {type: 'separator'},
       {label: 'Quit', click: app.quit }
     ])
-    tray.setToolTip('This is my application.')
+    tray.setToolTip('Sound Machine Application')
     tray.setContextMenu(contextMenu)
 
 });
@@ -85,6 +91,7 @@ var settingsWindow = null;
 
 ipc.on('open-settings-window', function () {
     if (settingsWindow) {
+        settingsWindow.focus();
         return;
     }
 
@@ -106,12 +113,13 @@ var aboutWindow = null;
 
 ipc.on('open-about-window', function () {
     if (aboutWindow) {
+        aboutWindow.focus();
         return;
     }
 
     aboutWindow = new BrowserWindow({
         frame: false,
-        height: 200,
+        height: 250,
         resizable: false,
         width: 200
     });

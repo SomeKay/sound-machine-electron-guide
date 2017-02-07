@@ -1,12 +1,19 @@
 'use strict';
 
 var soundButtons = document.querySelectorAll('.button-sound');
+var path = require('path');
+
+const notifier = require('node-notifier');
 
 for (var i = 0; i < soundButtons.length; i++) {
     var soundButton = soundButtons[i];
     var soundName = soundButton.attributes['data-sound'].value;
 
     prepareButton(soundButton, soundName);
+}
+
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
 function prepareButton(buttonEl, soundName) {
@@ -16,6 +23,12 @@ function prepareButton(buttonEl, soundName) {
     buttonEl.addEventListener('click', function () {
         audio.currentTime = 0;
         audio.play();
+        notifier.notify({
+           'title': 'Sound playing:',
+           'message': soundName.capitalizeFirstLetter().replace(/-/g, ' '),
+           'sound' : false,
+           'icon': __dirname + '/img/icons/' + soundName + '.png'
+        });
     });
 }
 

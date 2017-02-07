@@ -26,11 +26,14 @@ body {
 
 #main h1 {
     color: #fff;
+/*
+    text-indent: -10000px;
     padding-right: 6px;
+*/
     padding-top: 5px;
     padding-bottom: 8px;
-    text-align: right;
-    text-indent: -10000px;
+    text-align: center;
+
     border-bottom: 2px solid #73E2F7;
     border-top: 2px solid #73E2F7;
 }
