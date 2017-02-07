@@ -23,6 +23,14 @@ input {
     padding: 10px;
 }
 
+.copyright {
+    position: relative;
+float: left;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
 .close {
     background: transparent url('../img/close.png') no-repeat 4px 4px;
     background-size: 24px 24px;

@@ -46,7 +46,7 @@ app.on('ready', function() {
 
           settingsWindow = new BrowserWindow({
               frame: false,
-              height: 200,
+              height: 220,
               resizable: false,
               width: 200
           });
@@ -58,7 +58,7 @@ app.on('ready', function() {
           });
       }
       }, //open settings on click
-      {label: 'About',
+      {label: 'Help',
       click: function () {
           if (aboutWindow) {
               aboutWindow.focus();
@@ -67,7 +67,7 @@ app.on('ready', function() {
 
           aboutWindow = new BrowserWindow({
               frame: false,
-              height: 250,
+              height: 230,
               resizable: false,
               width: 200
           });
@@ -82,7 +82,7 @@ app.on('ready', function() {
       {type: 'separator'},
       {label: 'Quit', click: app.quit }
     ])
-    tray.setToolTip('Sound Machine Application')
+    tray.setToolTip('Sound Machine')
     tray.setContextMenu(contextMenu)
 
 });
@@ -97,7 +97,7 @@ ipc.on('open-settings-window', function () {
 
     settingsWindow = new BrowserWindow({
         frame: false,
-        height: 200,
+        height: 220,
         resizable: false,
         width: 200
     });
@@ -119,7 +119,7 @@ ipc.on('open-about-window', function () {
 
     aboutWindow = new BrowserWindow({
         frame: false,
-        height: 250,
+        height: 230,
         resizable: false,
         width: 200
     });

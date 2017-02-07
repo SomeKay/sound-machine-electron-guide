@@ -3,7 +3,7 @@
 var soundButtons = document.querySelectorAll('.button-sound');
 var path = require('path');
 
-const notifier = require('node-notifier');
+var notifier = require('node-notifier');
 
 for (var i = 0; i < soundButtons.length; i++) {
     var soundButton = soundButtons[i];
