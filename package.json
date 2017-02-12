@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "main": "./main.js",
   "scripts": {
-    "start": "electron .",
-    "package": "electron-packager ./ SoundMachine --all --out ~/Desktop/SoundMachine --version 0.30.2 --overwrite --icon=./app/img/app-icon.icns"
+    "start": "electron ."
   },
   "devDependencies": {
-    "electron-packager": "^5.0.1",
+    "electron": "^1.4.15",
     "electron-prebuilt": "^0.30.3"
   },
   "dependencies": {
-    "nconf": "^0.7.2"
+    "nconf": "^0.8.4",
+    "node-notifier": "^5.0.2"
   }
 }

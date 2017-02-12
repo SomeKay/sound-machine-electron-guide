@@ -10,8 +10,8 @@ body {
 
 #main {
     background: #1DCCEB;
-    border-bottom: 1px solid #73E2F7;
-    height: 700px;
+    border-bottom: 3px solid #044D7F;
+    height: 540px;
 }
 
 .speaker {
@@ -26,10 +26,16 @@ body {
 
 #main h1 {
     color: #fff;
-    padding-right: 6px;
-    padding-top: 5px;
-    text-align: right;
+/*
     text-indent: -10000px;
+    padding-right: 6px;
+*/
+    padding-top: 5px;
+    padding-bottom: 8px;
+    text-align: center;
+
+    border-bottom: 2px solid #73E2F7;
+    border-top: 2px solid #73E2F7;
 }
 
 #main h1 img {
@@ -88,6 +94,7 @@ body {
     -webkit-app-region: no-drag;
 }
 
+.about,
 .settings,
 .close {
     cursor: pointer;
@@ -102,6 +109,12 @@ body {
     -webkit-app-region: no-drag;
 }
 
+.about {
+   background: transparent url('../img/about.png') no-repeat 4px 4px;
+   background-size: 24px 24px;
+   right: 70px;
+}
+
 .settings {
     background: transparent url('../img/settings.png') no-repeat 4px 4px;
     background-size: 24px 24px;
@@ -113,4 +126,3 @@ body {
     background-size: 24px 24px;
     right: 6px;
 }
-

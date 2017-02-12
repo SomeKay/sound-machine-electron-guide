@@ -1,23 +1,19 @@
 'use strict';
 
-var ipc = require('ipc');
-var remote = require('remote');
-var Tray = remote.require('tray');
-var Menu = remote.require('menu');
+var soundButtons = document.querySelectorAll('.button-sound');
 var path = require('path');
 
-var soundButtons = document.querySelectorAll('.button-sound');
-var closeEl = document.querySelector('.close');
-var settingsEl = document.querySelector('.settings');
-
-var trayIcon = null;
-var trayMenu = null;
+var notifier = require('node-notifier');
 
 for (var i = 0; i < soundButtons.length; i++) {
     var soundButton = soundButtons[i];
     var soundName = soundButton.attributes['data-sound'].value;
 
     prepareButton(soundButton, soundName);
+}
+
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
 function prepareButton(buttonEl, soundName) {
@@ -27,46 +23,33 @@ function prepareButton(buttonEl, soundName) {
     buttonEl.addEventListener('click', function () {
         audio.currentTime = 0;
         audio.play();
+        notifier.notify({
+           'title': 'Sound playing:',
+           'message': soundName.capitalizeFirstLetter().replace(/-/g, ' '),
+           'sound' : false,
+           'icon': __dirname + '/img/icons/' + soundName + '.png'
+        });
     });
 }
 
-closeEl.addEventListener('click', function () {
-    ipc.send('close-main-window');
+var ipc = require('electron').ipcRenderer;
+
+var aboutEl = document.querySelector('.about');
+aboutEl.addEventListener('click', function () {
+    ipc.send('open-about-window');
 });
 
+var settingsEl = document.querySelector('.settings');
 settingsEl.addEventListener('click', function () {
     ipc.send('open-settings-window');
 });
 
-ipc.on('global-shortcut', function (arg) {
+var closeEl = document.querySelector('.close');
+closeEl.addEventListener('click', function () {
+    ipc.send('close-main-window');
+});
+
+ipc.on('global-shortcut', function(event, arg) {
     var event = new MouseEvent('click');
     soundButtons[arg].dispatchEvent(event);
 });
-
-if (process.platform === 'darwin') {
-    trayIcon = new Tray(path.join(__dirname, 'img/tray-iconTemplate.png'));
-}
-else {
-    trayIcon = new Tray(path.join(__dirname, 'img/tray-icon-alt.png'));
-}
-
-var trayMenuTemplate = [
-    {
-        label: 'Sound machine',
-        enabled: false
-    },
-    {
-        label: 'Settings',
-        click: function () {
-            ipc.send('open-settings-window');
-        }
-    },
-    {
-        label: 'Quit',
-        click: function () {
-            ipc.send('close-main-window');
-        }
-    }
-];
-trayMenu = Menu.buildFromTemplate(trayMenuTemplate);
-trayIcon.setContextMenu(trayMenu);
