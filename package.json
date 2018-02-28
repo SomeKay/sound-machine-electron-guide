@@ -6,9 +6,9 @@
     "start": "electron ."
   },
   "devDependencies": {
-    "electron-prebuilt": "^0.30.3"
+    "electron": "^1.8.2"
   },
   "dependencies": {
-    "nconf": "^0.7.2"
+    "nconf": "^0.10.0"
   }
 }

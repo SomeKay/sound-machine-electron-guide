@@ -1,6 +1,8 @@
 'use strict';
 
-var nconf = require('nconf').file({file: getUserHome() + '/sound-machine-config.json'});
+var nconf = require('nconf').file({
+    file: getUserHome() + '/sound-machine-config.json'
+});
 
 function saveSettings(settingKey, settingValue) {
     nconf.set(settingKey, settingValue);
@@ -20,3 +22,4 @@ module.exports = {
     saveSettings: saveSettings,
     readSettings: readSettings
 };
+

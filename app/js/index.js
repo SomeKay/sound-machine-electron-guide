@@ -19,27 +19,25 @@ function prepareButton(buttonEl, soundName) {
     });
 }
 
-var ipc = require('ipc');
+const { ipcRenderer } = require('electron');
+const { Menu, Tray } = require('electron').remote
+const path = require('path');
 
 var closeEl = document.querySelector('.close');
 closeEl.addEventListener('click', function () {
-    ipc.send('close-main-window');
+    ipcRenderer.send('close-main-window');
 });
 
-ipc.on('global-shortcut', function (arg) {
+ipcRenderer.on('global-shortcut', function (event, arg) {
     var event = new MouseEvent('click');
     soundButtons[arg].dispatchEvent(event);
 });
 
 var settingsEl = document.querySelector('.settings');
 settingsEl.addEventListener('click', function () {
-    ipc.send('open-settings-window');
+    ipcRenderer.send('open-settings-window');
 });
 
-var remote = require('remote');
-var Tray = remote.require('tray');
-var Menu = remote.require('menu');
-var path = require('path');
 
 var trayIcon = null;
 
@@ -58,15 +56,16 @@ var trayMenuTemplate = [
     {
         label: 'Settings',
         click: function () {
-            ipc.send('open-settings-window');
+            ipcRenderer.send('open-settings-window');
         }
     },
     {
         label: 'Quit',
         click: function () {
-            ipc.send('close-main-window');
+            ipcRenderer.send('close-main-window');
         }
     }
 ];
 var trayMenu = Menu.buildFromTemplate(trayMenuTemplate);
 trayIcon.setContextMenu(trayMenu);
+
